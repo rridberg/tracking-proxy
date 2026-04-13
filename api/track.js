@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+module.exports = async function (req, res) {
   const { num } = req.query;
 
   if (!num) {
@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     const response = await fetch(`https://api.goshippo.com/tracks/`, {
       method: "POST",
       headers: {
-        "Authorization": "Authorization": `ShippoToken ${process.env.SHIPPO_API_KEY}`,
+        "Authorization": `ShippoToken ${process.env.SHIPPO_API_KEY}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -29,4 +29,4 @@ export default async function handler(req, res) {
   } catch (error) {
     return res.status(500).json({ error: "Tracking lookup failed" });
   }
-}
+};
